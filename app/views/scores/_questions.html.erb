@@ -19,17 +19,17 @@
       m.h3("Q#{idx}. あなたの仕事に対する価値観でもっとも合致する方を選んでください",
         class: 'text-xs-center')
       m.div(class: 'choices btn-group', 'data-toggle' => 'buttons') do
-        m.label(class: 'btn btn-secondary career') do
+        m.label(class: 'btn career') do
           m << f.radio_button("q#{idx}".to_sym, qu[0][1],
             { autocomplete: 'off' })
           m << "#{qu[0][0]}"
         end
-        m.label(class: 'btn btn-secondary career') do
+        m.label(class: 'btn career') do
           m << f.radio_button("q#{idx}".to_sym, qu[1][1],
             { autocomplete: 'off' })
           m << "#{qu[1][0]}"
         end
-        m.label(class: 'btn btn-secondary career') do
+        m.label(class: 'btn career') do
           m << f.radio_button("q#{idx}".to_sym, qu[2][1],
             { autocomplete: 'off' })
           m << "#{qu[2][0]}"
