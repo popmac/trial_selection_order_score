@@ -1,0 +1,27 @@
+.choices {
+  text-align: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  .btn {
+    width: 10rem;
+    height: 8rem;
+    float: none;
+    border-radius: 0.25rem;
+    white-space: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem;
+    border-color: #419641;
+  }
+  .btn.career {
+    width: 30%;
+    line-height: 1.4;
+  }
+  .btn.active {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #419641;
+  }
+}
