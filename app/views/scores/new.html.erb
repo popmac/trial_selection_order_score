@@ -1,0 +1,17 @@
+<%
+  @javascript = 'examineesAction'
+%>
+
+<%= form_for @score do |f| %>
+  <div class="card" id="examination">
+    <div class="personal">
+      <%= render 'questions', f: f %>
+    </div>
+
+    <div id="submit-btn">
+      <div class="text-xs-center">
+      <%= f.submit '送信する', data: { disable_with: "送信中..." }, class: 'btn btn-warning btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>

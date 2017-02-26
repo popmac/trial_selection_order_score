@@ -1,0 +1,48 @@
+<%
+  questions = [
+    [
+      ['リーダーになりたい', '5'],
+      ["プレーヤーになりたい", '3'],
+      ["サポーターになりたい", '1']
+    ],
+    [
+      ['アイデアを実現化したい', '5'],
+      ['人のために行動したい', '3'],
+      ['プライベートを大事にしたい','1']
+    ]
+  ]
+%>
+
+<%= markup do |m|
+  questions.each.with_index(1) do |qu, idx|
+    m.div(id: "career-#{idx}") do
+      m.h3("Q#{idx}. あなたの仕事に対する価値観でもっとも合致する方を選んでください",
+        class: 'text-xs-center')
+      m.div(class: 'choices btn-group', 'data-toggle' => 'buttons') do
+        m.label(class: 'btn btn-secondary career') do
+          m << f.radio_button("q#{idx}".to_sym, qu[0][1],
+            { autocomplete: 'off' })
+          m << "#{qu[0][0]}"
+        end
+        m.label(class: 'btn btn-secondary career') do
+          m << f.radio_button("q#{idx}".to_sym, qu[1][1],
+            { autocomplete: 'off' })
+          m << "#{qu[1][0]}"
+        end
+        m.label(class: 'btn btn-secondary career') do
+          m << f.radio_button("q#{idx}".to_sym, qu[2][1],
+            { autocomplete: 'off' })
+          m << "#{qu[2][0]}"
+        end
+      end
+      m.div(class: 'back-next-button clearfix') do
+        if idx == questions.size
+          m.div('次の診断へ進む',
+            class: 'next diagnosis btn btn-info btn-lg disabled')
+        else
+          m.div('次に進む', class: 'next btn btn-info btn-lg disabled')
+        end
+      end
+    end
+  end
+end %>
