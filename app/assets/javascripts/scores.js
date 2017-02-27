@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require tether
 //= require bootstrap
 //= require turbolinks
 //= require_tree ./common
@@ -7,4 +8,5 @@
 
 $(document).on('turbolinks:load', function() {
   Trigger(); // ./common/trigger.js
+  $('[data-toggle="tooltip"]').tooltip();
 });

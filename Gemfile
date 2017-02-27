@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap', '~> 4.0.0.alpha4'
+gem 'tether-rails'
 gem 'sprockets-es6', '~> 0.9.2'
 gem 'nokogiri'
 
