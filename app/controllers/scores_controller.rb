@@ -18,7 +18,7 @@ class ScoresController < ApplicationController
 
   private
     def score_params
-      params.require(:score).permit(symbol_array(2))
+      params.require(:score).permit(symbol_array(6))
     end
 
     def symbol_array(integer)

@@ -1,14 +1,14 @@
 <%
   questions = [
     [
-      ['リーダーになりたい', '5'],
-      ["プレーヤーになりたい", '3'],
-      ["サポーターになりたい", '1']
+      ['リーダーになりたい', '1'],
+      ["プレーヤーになりたい", '2'],
+      ["サポーターになりたい", '3']
     ],
     [
-      ['アイデアを実現化したい', '5'],
-      ['人のために行動したい', '3'],
-      ['プライベートを大事にしたい','1']
+      ['アイデアを実現化したい', '4'],
+      ['人のために行動したい', '5'],
+      ['プライベートを大事にしたい','6']
     ]
   ]
 %>
@@ -18,24 +18,22 @@
     m.div(id: "career-#{idx}") do
       m.h3("Q#{idx}. あなたの仕事に対する価値観でもっとも合致する方を選んでください",
         class: 'text-xs-center')
-      m.div(class: 'choices btn-group', 'data-toggle' => 'buttons') do
-        m.label(class: 'btn career') do
-          m << f.radio_button("q#{idx}".to_sym, qu[0][1],
-            { autocomplete: 'off' })
-          m << "#{qu[0][0]}"
+      m.div(class: 'choices btn-group') do
+        m.label(class: 'btn btn-secondary career', id: "q#{qu[0][1]}") do
+          m << f.check_box("q#{qu[0][1]}".to_sym, { class: 'click-order first second third' }, 5, 1)
+          m.span("#{qu[0][0]}")
         end
-        m.label(class: 'btn career') do
-          m << f.radio_button("q#{idx}".to_sym, qu[1][1],
-            { autocomplete: 'off' })
-          m << "#{qu[1][0]}"
+        m.label(class: 'btn btn-secondary career', id: "q#{qu[1][1]}") do
+          m << f.check_box("q#{qu[1][1]}".to_sym, { class: 'click-order first second third' }, 5, 1)
+          m.span("#{qu[1][0]}")
         end
-        m.label(class: 'btn career') do
-          m << f.radio_button("q#{idx}".to_sym, qu[2][1],
-            { autocomplete: 'off' })
-          m << "#{qu[2][0]}"
+        m.label(class: 'btn btn-secondary career', id: "q#{qu[2][1]}") do
+          m << f.check_box("q#{qu[2][1]}".to_sym, { class: 'click-order first second third' }, 5, 1)
+          m.span("#{qu[2][0]}")
         end
       end
       m.div(class: 'back-next-button clearfix') do
+        m.div('やり直す', class: 'btn btn-lg btn-warning redo')
         if idx == questions.size
           m.div('次の診断へ進む',
             class: 'next diagnosis btn btn-info btn-lg disabled')
@@ -46,3 +44,141 @@
     end
   end
 end %>
+
+<script>
+var q1_text = $("#q1").text();
+var q2_text = $("#q2").text();
+var q3_text = $("#q3").text();
+
+var q4_text = $("#q4").text();
+var q5_text = $("#q5").text();
+var q6_text = $("#q6").text();
+
+$('#career-1 .click-order.first.second.third').on('click', clickOrder1);
+$('#career-2 .click-order.first.second.third').on('click', clickOrder2);
+
+function clickOrder1(){
+  if ($(this).hasClass('first') && $(this).hasClass('second') && $(this).hasClass('third')) {
+    var clicked_label = $(this).parent();
+    $(clicked_label).addClass('clicked-color');
+    var sentence = $(this).next('span').text();
+    $(this).next('span').html('<strong>１位.</strong>' + sentence).css('color', 'white');
+    $(this).addClass('clicked');
+    $(this).removeClass('second third');
+    $(this).prop('disabled', true);
+    var first_score_input = $(this).parent().find('input[type="hidden"]');
+    $(first_score_input).val(5);
+    $('.click-order.first.second.third').each(function(i){
+      if(i === 2) {
+        return false;
+      }
+      $(this).removeClass('first');
+    });
+  } else if ($(this).hasClass('second') && $(this).hasClass('third')) {
+    var clicked_label = $(this).parent();
+    $(clicked_label).addClass('clicked-color');
+    var sentence = $(this).next('span').text();
+    $(this).next('span').html('<strong>2位.</strong>' + sentence).css('color', 'white');
+    $(this).addClass('clicked');
+    $(this).removeClass('third');
+    $(this).prop('disabled', true);
+    var second_score_input = $(this).parent().find('input[type="hidden"]');
+    $(second_score_input).val(3);
+    $('.click-order' + '.second' + '.third').each(function(i){
+      if(i === 1) {
+        return false;
+      }
+      var clicked_label = $(this).parent();
+      $(clicked_label).addClass('clicked-color');
+      var sentence = $(this).next('span').text();
+      $(this).next('span').html('<strong>3位.</strong>' + sentence).css('color', 'white');
+      $(this).addClass('clicked');
+      $(this).removeClass('second');
+      $(this).prop("checked", true);
+      $(this).prop('disabled', true);
+      var third_score_input = $(this).parent().find('input[type="hidden"]');
+      $(third_score_input).val(1);
+      $('.redo').show();
+      if ($('.redo').is(':visible')) {
+        $('#career-1 .redo').on('click', function(){
+          $('#q1').removeClass('clicked-color');
+          $('#q2').removeClass('clicked-color');
+          $('#q3').removeClass('clicked-color');
+          $('#q1 input[type="checkbox"]').prop('checked', false).prop('disabled', false).addClass('first second third').removeClass('clicked clicked-color');
+          $('#q2 input[type="checkbox"]').prop('checked', false).prop('disabled', false).addClass('first second third').removeClass('clicked clicked-color');
+          $('#q3 input[type="checkbox"]').prop('checked', false).prop('disabled', false).addClass('first second third').removeClass('clicked clicked-color');
+          // $('#q1 span').text(first_text).css('color', 'black');
+          // $('#q2 span').text(second_text).css('color', 'black');
+          // $('#q3 span').text(third_text).css('color', 'black');
+          $('#q1 span').text(q1_text).css('color', 'black');
+          $('#q2 span').text(q2_text).css('color', 'black');
+          $('#q3 span').text(q3_text).css('color', 'black');
+          $(this).parent().find('.next').addClass('disabled');
+          $(this).hide();
+        });
+      }
+    });
+  }
+}
+
+function clickOrder2(){
+  if ($(this).hasClass('first') && $(this).hasClass('second') && $(this).hasClass('third')) {
+    var clicked_label = $(this).parent();
+    $(clicked_label).addClass('clicked-color');
+    var sentence = $(this).next('span').text();
+    $(this).next('span').html('<strong>１位.</strong>' + sentence).css('color', 'white');
+    $(this).addClass('clicked');
+    $(this).removeClass('second third');
+    $(this).prop('disabled', true);
+    var first_score_input = $(this).parent().find('input[type="hidden"]');
+    $(first_score_input).val(5);
+    $('.click-order.first.second.third').each(function(i){
+      if(i === 2) {
+        return false;
+      }
+      $(this).removeClass('first');
+    });
+  } else if ($(this).hasClass('second') && $(this).hasClass('third')) {
+    var clicked_label = $(this).parent();
+    $(clicked_label).addClass('clicked-color');
+    var sentence = $(this).next('span').text();
+    $(this).next('span').html('<strong>2位.</strong>' + sentence).css('color', 'white');
+    $(this).addClass('clicked');
+    $(this).removeClass('third');
+    $(this).prop('disabled', true);
+    var second_score_input = $(this).parent().find('input[type="hidden"]');
+    $(second_score_input).val(3);
+    $('.click-order' + '.second' + '.third').each(function(i){
+      if(i === 1) {
+        return false;
+      }
+      var clicked_label = $(this).parent();
+      $(clicked_label).addClass('clicked-color');
+      var sentence = $(this).next('span').text();
+      $(this).next('span').html('<strong>3位.</strong>' + sentence).css('color', 'white');
+      $(this).addClass('clicked');
+      $(this).removeClass('second');
+      $(this).prop("checked", true);
+      $(this).prop('disabled', true);
+      var third_score_input = $(this).parent().find('input[type="hidden"]');
+      $(third_score_input).val(1);
+      $('.redo').show();
+      if ($('.redo').is(':visible')) {
+        $('#career-2 .redo').on('click', function(){
+          $('#q4').removeClass('clicked-color');
+          $('#q5').removeClass('clicked-color');
+          $('#q6').removeClass('clicked-color');
+          $('#q4 input[type="checkbox"]').prop('checked', false).prop('disabled', false).addClass('first second third').removeClass('clicked clicked-color');
+          $('#q5 input[type="checkbox"]').prop('checked', false).prop('disabled', false).addClass('first second third').removeClass('clicked clicked-color');
+          $('#q6 input[type="checkbox"]').prop('checked', false).prop('disabled', false).addClass('first second third').removeClass('clicked clicked-color');
+          $('#q4 span').text(q4_text).css('color', 'black');
+          $('#q5 span').text(q5_text).css('color', 'black');
+          $('#q6 span').text(q6_text).css('color', 'black');
+          $(this).parent().find('.next').addClass('disabled');
+          $(this).hide();
+        });
+      }
+    });
+  }
+}
+</script>
