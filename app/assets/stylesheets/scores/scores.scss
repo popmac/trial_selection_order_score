@@ -5,6 +5,15 @@
   }
 }
 
+table {
+  margin: 0 auto;
+  border: 1px solid #000000;
+  th, tr, td {
+    padding: 5px;
+    border: 1px solid #000000;
+  }
+}
+
 .choices {
   text-align: center;
   display: flex;
@@ -21,10 +30,27 @@
     align-items: center;
     padding: 0.25rem;
     border-color: #419641;
+    &:focus, &:hover {
+      background-color: #449d44;
+    }
+  }
+  .btn.career {
+    input {
+      display: none;
+    }
   }
   .btn.active {
     color: #fff;
     background-color: #449d44;
     border-color: #419641;
   }
+  .clicked-color {
+    background-color: #449d44;
+  }
+}
+
+.redo {
+  display: none;
+  width: 15%;
+  margin: 10px auto;
 }

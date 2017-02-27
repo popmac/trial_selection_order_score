@@ -3,8 +3,10 @@ function examineesAction(content) {
   let submitArea = content.find('#submit-btn')
   let choices = examination.find('.choices')
   let personal = examination.find('.personal')
+  let redo = examination.find('.redo')
 
   function defaultSetting() {
+    redo.hide()
     submitArea.hide()
     personal.children().not(':first').hide()
   }
@@ -17,6 +19,7 @@ function examineesAction(content) {
     let question = $(this).parent().parent()
     question.next().show()
     question.hide()
+    redo.hide()
   }
   function showSubmitArea() {
     submitArea.show()
