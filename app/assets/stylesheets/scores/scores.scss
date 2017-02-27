@@ -1,3 +1,10 @@
+.card-score {
+  margin-top: 50px;
+  .card {
+    border: none;
+  }
+}
+
 .choices {
   text-align: center;
   display: flex;
@@ -14,10 +21,6 @@
     align-items: center;
     padding: 0.25rem;
     border-color: #419641;
-  }
-  .btn.career {
-    width: 30%;
-    line-height: 1.4;
   }
   .btn.active {
     color: #fff;
