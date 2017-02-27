@@ -8,8 +8,12 @@ class ScoresController < ApplicationController
   end
 
   def create
-    Score.create(score_params)
-    redirect_to root_path
+    @score = Score.create(score_params)
+    redirect_to score_path(@score)
+  end
+
+  def show
+    @score = Score.find(params[:id])
   end
 
   private

@@ -5,6 +5,15 @@
   }
 }
 
+table {
+  margin: 0 auto;
+  border: 1px solid #000000;
+  th, tr, td {
+    padding: 5px;
+    border: 1px solid #000000;
+  }
+}
+
 .choices {
   text-align: center;
   display: flex;

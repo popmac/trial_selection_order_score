@@ -1,0 +1,30 @@
+<div class="card-score text-xs-center">
+  <h1>結果</h1>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>q1</th>
+          <th>q2</th>
+          <th>q3</th>
+          <th>q4</th>
+          <th>q5</th>
+          <th>q6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @score.q1 %></td>
+          <td><%= @score.q2 %></td>
+          <td><%= @score.q3 %></td>
+          <td><%= @score.q4 %></td>
+          <td><%= @score.q5 %></td>
+          <td><%= @score.q6 %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= link_to 'トップに戻る', scores_path, class: 'btn btn-primary' %>
+  </div>
+</div>
