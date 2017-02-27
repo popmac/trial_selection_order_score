@@ -30,12 +30,25 @@ table {
     align-items: center;
     padding: 0.25rem;
     border-color: #419641;
+    &:focus, &:hover {
+      background-color: #449d44;
+    }
+  }
+  .btn.career {
+    input {
+      display: none;
+    }
   }
   .btn.active {
     color: #fff;
     background-color: #449d44;
     border-color: #419641;
   }
+  .clicked-color {
+    background-color: #449d44;
+  }
+}
+
 .redo {
   display: none;
   width: 15%;
