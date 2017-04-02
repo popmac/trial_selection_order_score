@@ -11,3 +11,12 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore node_modules
+/node_modules
+
+# Ignore eslintrc
+/.eslintrc
+
+# Ignore package.json
+/package.json
